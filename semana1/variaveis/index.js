@@ -30,3 +30,54 @@ alert(`Voce recebe ${t/p} por hora`)
 Foram criadas strings "p" e "t", sendo ambas let e, assim, podendo assumir diferentes valores. Com o alert,
 quando respondemos essas perguntas, será aberta uma caixinha que irá calcular a razão de t/p, ou seja, irá demonstrar
 quanto eu recebo por hora.
+
+
+const nome = "Marina"
+const idade = 26
+console.log(typeof nome)
+console.log(typeof idade)
+
+Quando a gente coloca "" a variável será do tipo STRINGS, ou seja, texto. 
+Quando não colocamos as "" será do tipo NUMBERS
+
+
+const nome = prompt ("Qual é o seu nome?")
+let idade = prompt ("Qual é a sua idade?")
+console.log("Olá", nome, "você tem", idade, "anos")
+
+
+const voceEhEstudante = "SIM"
+const voceAcreditaNoSus = "SIM"
+const voceJaTomouAVacina = "SIM"
+console.log("Você é estudante?", voceEhEstudante)
+console.log("Você acredita no SUS?", voceAcreditaNoSus) 
+console.log("Você já tomou a vacina?", voceJaTomouAVacina)
+*/
+
+
+let a = 10
+let b = 20
+c = a
+b = c
+a = b
+console.log(a,b,c)
+
+
+let m = 30
+let l = 20
+p = m
+o = l 
+l = p
+m = o 
+
+console.log("O novo valor de m é", m) 
+console.log("O novo valor de l é", l)
+
+
+// Essa teve que pensar //
+
+
+
+
+
+

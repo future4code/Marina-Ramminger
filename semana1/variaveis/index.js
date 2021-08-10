@@ -77,6 +77,15 @@ console.log("O novo valor de l é", l)
 // Essa teve que pensar //
 
 
+let resultado
+resultado = 3 + 4
+console.log('1):',resultado )
+
+resultado = 3 * 5 / 2
+console.log('2):',resultado )
+
+resultado = (4 - 5) * -1
+console.log('3: ',resultado)
 
 
 

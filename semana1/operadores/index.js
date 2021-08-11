@@ -192,10 +192,10 @@ console.log("O primeiro número é maior que o segundo?", a)
 let b = numero1 === numero2
 console.log("O primeiro número é igual ao segundo?", b)
 
-let c = numero1 >= numero2
+let c = numero1 % numero2 === 0
 console.log("O primeiro número é divisível pelo segundo?", c)
 
-let d = numero2 >= numero1
+let d = numero2 % numero1 === 0
 console.log("O segundo número é divisível pelo primeiro?", d)
 
 

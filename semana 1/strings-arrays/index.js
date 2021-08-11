@@ -136,5 +136,6 @@ let comidasPreferidas = ["galinhada", "churrasco", "pastiggio", "caldo verde", "
 console.log(comidasPreferidas)
 
 let comidaUsuário = prompt("Qual a sua comida favorita?")
-comidasPreferidas[i+1] = comidaUsuário
+comidasPreferidas[1] = comidaUsuário
 console.log(comidasPreferidas)
+

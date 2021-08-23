@@ -21,13 +21,18 @@ console.log(retornaArrayInvertido)
 
 // EXERCÍCIO 03
 function retornaArrayOrdenado(array) {
-  
+    const array3 = Number[43, 24, 81, 12, 06]
+    return array.sort()
 }
+console.log(retornaArrayOrdenado)
 
 // EXERCÍCIO 04
 function retornaNumerosPares(array) {
-  
-}
+    const array4 = [4, 6, 15, 27, 38, 44, 21]
+    return array.filter(n => n % 2 === 0)
+    }
+    console.log(retornaNumerosPares)
+
 
 // EXERCÍCIO 05
 function retornaNumerosParesElevadosADois(array) {

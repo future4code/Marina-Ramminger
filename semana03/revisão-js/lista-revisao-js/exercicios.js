@@ -36,8 +36,9 @@ function retornaNumerosPares(array) {
 
 // EXERCÍCIO 05
 function retornaNumerosParesElevadosADois(array) {
- 
+ return retornaNumerosPares(array).map(n => n ** 2)
 }
+console.log(retornaNumerosParesElevadosADois)
 
 // EXERCÍCIO 06
 function retornaMaiorNumero(array) {

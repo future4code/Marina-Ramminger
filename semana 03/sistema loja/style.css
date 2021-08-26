@@ -1,0 +1,39 @@
+body {
+    background: yellow;
+}
+
+h1 {
+  color: darkgreen;  
+background: black;
+display: inline;
+}
+h4 {
+color: green;
+background: black;
+
+}
+
+p {
+    background-color: black;
+    color:blanchedalmond;
+    display: inline;
+}
+div {
+    color: black;
+    
+}
+img {
+        border: 1px solid black;
+        width: 100px;
+        height: 100px;
+      }
+      
+      img {
+        width: 100px;
+        height: 100px;
+        object-fit: contain;
+      }
+}
+a {
+color: red;
+}

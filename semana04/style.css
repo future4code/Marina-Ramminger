@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header{
+background-color: rgb(90, 11, 11);
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 8px;
+text-align: right;
+font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+button{
+    width: 20%;
+}
+body{
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 50px 1fr 50px;}
+
+main{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    text-align: center;
+    gap: 10px;
+    margin: 5px;
+    border: 1px solid black;
+    background-color: rgb(190, 96, 96);
+}
+
+.midias{
+justify-content: center;   
+display: flex;
+flex-direction: column;
+font-family: fantasy;
+}
+
+video{
+    width: 100%
+}
+
+footer {
+    background-color: rgb(90, 11, 11);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}

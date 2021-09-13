@@ -25,9 +25,8 @@ placeholder="Curso Complementar"
         <option>Curso Inglês </option>
 
         </select>
-  
-  <h1>
-          <button  onClick={this.props.Etapa2}>Próxima Etapa</button> </h1>
+  <p>
+        <button onClick={this.props.botaoEtapa}>Próxima Etapa</button> </p>
 </div>
       );
     }

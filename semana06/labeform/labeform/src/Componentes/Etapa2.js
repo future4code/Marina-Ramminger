@@ -20,8 +20,8 @@ export default class Etapa2 extends React.Component {
           onChange={this.props.onChangeEnsino}
           placeholder="Ensino" />
   
-  <h1>
-          <button  onClick={this.props.Etapa2}>Próxima Etapa</button> </h1>
+  <p>
+  <button onClick={this.props.botaoEtapa}>Próxima Etapa</button> </p>
 </div>
       );
     }

@@ -39,8 +39,10 @@ export default class Etapa1 extends React.Component {
 
         </select>
 
-        <h1>
-          <button type="submit">Próxima Etapa</button> </h1>
+        <p>
+
+          <button onClick={this.props.botaoEtapa}>Próxima Etapa</button>
+          </p>
 </div>
     );
   }

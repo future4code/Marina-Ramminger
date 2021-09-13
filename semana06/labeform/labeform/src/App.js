@@ -1,21 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
+import React from 'react';
 import Etapa1 from './Componentes/Etapa1';
 import Etapa2 from './Componentes/Etapa2';
 import Etapa3 from './Componentes/Etapa3';
 import EtapaFinal from './Componentes/EtapaFinal';
-
-
-
-function App() {
-  return <div>
-    <h4>
-    <button>Próxima Etapa</button>
-    </h4>
-  </div>
-}
-
-export default App;
 
 
 export default class App extends React.Component {
@@ -26,11 +15,11 @@ export default class App extends React.Component {
   alteraEtapa = () => {
     switch (this.state.etapa) {
       case 1: 
-        return <Etapa1 />;
+        return <Etapa1 botaoEtapa={this.proximasEtapas} />;
       case 2: 
-        return <Etapa2 />;
+        return <Etapa2 botaoEtapa={this.proximasEtapas}/>;
       case 3:
-        return <Etapa3 />;
+        return <Etapa3 botaoEtapa={this.proximasEtapas}/>;
       case 4:
         return <EtapaFinal />;
     }
@@ -43,7 +32,7 @@ export default class App extends React.Component {
   render () {
       return (
         <div className = "inicial">
-        {alteraEtapa()}
+        {this.alteraEtapa()}
         </div>
       );
     }

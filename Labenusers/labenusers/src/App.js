@@ -1,96 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
-import React from "react";
-import axios from "axios";
-import ListaUsuários from "./ListaUsuários"
 
-const headers = {
-  headers: {
-    Authorization: "marina-ramminger-maryam"
-  }
-};
+// import './App.css';
+import React from "react";
+import ListaUsuários from "./ListaUsuários"
+import TelaCadastro from './TelaCadastro';
 
 
 export default class App extends React.Component {
-  state = {
-    users: "",
-    email: "",
-    home: true
+  state ={
+    telaAtual: "cadastro"
   };
 
-  // }
+  escolheTela = () =>{
+    switch (this.state.telaAtual){
+      case "cadastro":
+        return <TelaCadastro irListaUsuarios={this.irListaUsuarios}/>
+        case "lista":
+          return <ListaUsuários irTelaCadastro={this.irTelaCadastro}/>
+          default:
+            return <div> Erro! Página não encontrada.</div>
+    }
+  }
 
-  // logaUsuario = () => {
-  //   this.setState({ home: true });
-  // };
+irTelaCadastro  = () => {
+  this.setState({telaAtual: "cadastro"})
+}
 
-  // deslogaUsuario = () => {
-  //   this.setState({ home: false });
-  // };
-
-  // renderizaPagina = () => {
-  //   if (this.state.home) {
-  //     return <Home deslogaUsuario={this.deslogaUsuario} />;
-  //   } else {
-  //     return <Login logaUsuario={this.logaUsuario} />;
-  //   }
-  // };
-
-  handleUsersname = (e) => {
-    this.setState({ users: e.target.value });
-  };
-
-  handleUsersemail = (e) => {
-    this.setState({ email: e.target.value });
-  };
-
-  createUser = () => {
-    const url =
-      "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users";
-
-      const body = {
-        name: this.state.users,
-        email: this.state.email,
-      };
-
-    axios
-      .post(url, body, headers)
-      .then((res) => {
-        this.setState({ users: "", email: "" });
-      })
-      .catch((err) => {
-        alert(err.response.data.message);
-      });
-  };
-
-
-
+irListaUsuarios = () => {
+this.setState({telaAtual: "lista" })
+}
   render() {
-  
-
     return (
       <div>
-        <h1>LABENUSERS</h1>
-        <input
-          placeholder="Nome"
-          value={this.state.name}
-          onChange={this.handleUsersname}
-        />
-        <br/>
-        <input
-        placeholder="E-mail"
-        value={this.state.email}
-        onChange={this.handleUsersemail}
-        />
-      
-
-        <button onClick={this.createUser}>Enviar</button>
-<p>
-        <ListaUsuários />
-        </p>
+        {this.escolheTela()}
       </div>
 
-      
-    );
+    )
   }
 }

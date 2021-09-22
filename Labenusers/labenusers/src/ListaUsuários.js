@@ -1,65 +1,87 @@
 import React from 'react';
 import axios from "axios";
+import styled from "styled-components"
+
+const CardUsuario = styled.div`
+border: 1px solid black;
+    padding: 10px;
+    margin: 10px;
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    `
 
 
-const headers = {
-    headers: {
-      Authorization: "marina-ramminger-maryam"
-    }
-  }
+const Inicio = styled.div`
+    background-color: purple;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    `
 
-  export default class App extends React.Component {
+  export default class ListaUsuários extends React.Component {
     state = {
         userlist: []
     }
 
-    // deleteUSer = (id) => {
-    //     const url2 = `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`
-    //     axios.delete(url, headers)
-    //     .then((response) => {
-    //         this.getAllUserlist()
-    //     })
-    //     .catch ((error) => {console.log(error)})
-
-    // }
+    deleteUSer = (id) => {
+    const url2 = `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`
+    axios.delete(url2, {
+        headers: {
+          Authorization: "marina-ramminger-maryam"
+        }
+      })
+    .then((response) => {
+      alert("Usuário(a) deletado(a) com sucesso!")
+      this.getAllUserlist()
+       })
+    .catch ((error) => {
+     alert("Ops! Ocorreu um erro. Tente novamente.") 
+    //  (err.response.data)
+    })
+  }
     
-  getAllUserlist = () => {
+  getAllUserlist = async() => {
     const url =
       "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users";
     axios
-      .get(url, headers)
+      .get(url, {
+      headers: {
+      Authorization: "marina-ramminger-maryam"
+    }
+      })
       .then((res) => {
         this.setState({ userlist: res.data})
         console.log (this.state.userlist)
       })
       .catch((err) => {
-        alert(err.response);
+        alert("Ops! Ocorreu um problema.");
       })
   }
 
   componentDidMount() {
-    this.getAllUserlist();
+    this.getAllUserlist()
   }
 
     render() {
         const listaUsers = this.state.userlist.map((user) => {
             console.log(user)
-            return <li key={user.id}>{user.name}</li>
+            return (
+            <CardUsuario key={user.id}>{user.name}
+            <button onClick={() => this.deleteUSer(user.id)}>Excluir</button>
+            </CardUsuario>
+            )
         }
         )
 
-            // return <div>
-            //     {listaUsers.name}
-            //     <button onClick={() => this.deleteUSer}>Deletar</button>
-            //     {this.deleteUSer}
-            // </div>
-
-
-        return(
-            <div>   
-    <h1> Lista de Usuários </h1>
-    {listaUsers}
-            </div>
+        
+        return( 
+        <Inicio>
+          <button onClick={this.props.irTelaCadastro}> Ir para cadastro </button>
+          <h2> Lista de Usuários </h2>
+          {listaUsers}
+      </Inicio>
         )
     }
 }

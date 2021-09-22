@@ -18,6 +18,7 @@ const Inicio = styled.div`
     justify-items: center;
     align-items: center;
     width: 100%;
+    height: auto;
     `
 
   export default class ListaUsuários extends React.Component {

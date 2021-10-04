@@ -34,6 +34,16 @@ const Post = (props) => {
     setComentando({comentando: !comentando});
   };
 
+  
+
+  const enviarComentario = (comentario) => {
+    const listaDeComentarios = [...comentarios, comentario];
+
+    setComentarios(listaDeComentarios);
+    setComentando(false);
+    setNumeroComentarios(numeroComentarios + 1);
+  };
+  
   const caixaDeComentario = comentando ? (
     <SecaoComentario enviarComentario={enviarComentario}/>
   ) : (
@@ -45,14 +55,6 @@ const Post = (props) => {
       )
     })
   )
-
-  const enviarComentario = (comentario) => {
-    const listaDeComentarios = [...comentarios, comentario];
-
-    setComentarios(listaDeComentarios);
-    setComentando(false);
-    setNumeroComentarios(numeroComentarios + 1);
-  }
 
   return (
     <PostContainer>

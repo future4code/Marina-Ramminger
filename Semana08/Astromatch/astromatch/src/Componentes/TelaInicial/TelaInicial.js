@@ -1,25 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { HomeContainer, Profile, ProfileImage } from "./Styled";
+import { HomeContainer, Profile} from "./Styled";
 import axios from "axios"
 
 
 
-export const TelaInicial = () => {
+    const TelaInicial = (props) => {
     const [profile, setProfile] = useState ({})
 
     const url = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/marina-ramminger-maryam/person"
-   
-    useEffect (() => {
-        getProfile()
-    }, [])
-    
+
     const getProfile = () => {
         axios.get(url)
         .then((res) => {
             setProfile(res.data.profile)
         })
         .catch((err) => {
-            console.log(err);
+            console.log(err.response);
         })
     };
 
@@ -28,24 +24,29 @@ export const TelaInicial = () => {
     }, []);
 
     const choosePerson = (choosePerson) => {
-        axios.post("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/marina-ramminger-maryam/choose-person")
+        const body = {
+            id: profile.id,
+            choice: choosePerson,
+        };
+        axios.post("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/marina-ramminger-maryam/choose-person",
+        body)
         .then((res) => {
-            const body = {
-                id: profile.id,
-                choice: true
-            }
+            console.log(res.data);
+            getProfile();
+           
         })
         .catch((err) => {
-            console.log(err)
-        }) 
-    }
+            console.log(err.response)
+        });
+    };
 
 
     return(
         <HomeContainer>
-            {!profile ? <div>Acabaram os perfis!</div> :
             <Profile>
-                <img src={profile.photo}/>
+                <h1> ASTRO-MATCH</h1>
+                <h4> Encontre a pessoa que mais combine com você!</h4>
+                { <img src={profile.photo} alt="Imagem do perfil"/>}
                 <h2>{profile.name}, {profile.age}</h2>
                 <p> {profile.bio}</p>
             <div>
@@ -53,7 +54,15 @@ export const TelaInicial = () => {
                 <button onClick={() => choosePerson(true)}> ❤ </button>
             </div>
             </Profile>
-} 
+            <div>
+                <button onClick={() => props.trocarTela("TelaMatch")}>
+                    Ir para Matches
+                </button>
+            </div>
         </HomeContainer>
     )
-}
+};
+
+export default TelaInicial; 
+
+// {!profile ? <div>Acabaram os perfis!</div> :

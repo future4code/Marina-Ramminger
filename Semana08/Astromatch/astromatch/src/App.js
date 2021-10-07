@@ -29,6 +29,8 @@ export default class App extends React.Component{
 <button onClick={() => this.mudaTela("TelaMatch")}>TelaMatch</button>
 {this.mudarTela()}
 </div>
+
     );
+    // <button onClick ={}>Limpar Matches</button>
   }
 }

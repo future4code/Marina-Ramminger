@@ -45,7 +45,7 @@ import axios from "axios"
         <HomeContainer>
             <Profile>
                 <h1> ASTRO-MATCH</h1>
-                <h4> Encontre a pessoa que mais combine com você!</h4>
+                <h4> Encontre a pessoa que mais combina com você!</h4>
                 { <img src={profile.photo} alt="Imagem do perfil"/>}
                 <h2>{profile.name}, {profile.age}</h2>
                 <p> {profile.bio}</p>

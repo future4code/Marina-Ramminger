@@ -26,20 +26,17 @@ const TelaMatch = (props) => {
      const matchsMap = listaMatches.map((profile) => {
          return (
              <MatchContainer key={profile.id}>
-                 <p> {profile.name}, {profile.age}</p> 
-                 <p> {profile.bio}</p>
+                 <img src={profile.photo} alt="Imagem do perfil" />
+                 <h4> {profile.name}, {profile.age}</h4> 
              </MatchContainer>
          )
      })
 
-//     //fazer função MAP//
-/* //Dúvida: Por que aqui é profile? Qual nome coloco aqui? Por que não matches? */
-//     )
-
 const putClear =() => {
-    axios.put("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/marina-rammminger-maryam/clear")
+    axios.put("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/marina-ramminger-maryam/clear")
 .then((res) => {
     console.log(res.data);
+    setMatchesList([]) //para limpar automaticamente sem precisar atualizar. Muda o estado atual para um array vazio (sem matchs). 
 })
 .catch((err) => {
     console.log(err.response);
@@ -48,16 +45,16 @@ const putClear =() => {
 
 return (
     <div>
-        <div>
-            <button onClick={() => props.mudaTela("TelaIncial")}>Voltar</button>
-        </div>
         <Container>
             <div>
-                <h1> LISTA DE MATCHES</h1>
+                <h2> Essa é sua lista de likes!</h2>
     {matchsMap}
             </div>
         </Container>
         <button onClick={putClear}> Limpar Matches</button>
+        <button onClick={() => props.trocarTela("TelaInicial")}>
+                    Voltar para perfis
+                </button>
     </div>
 );
 };

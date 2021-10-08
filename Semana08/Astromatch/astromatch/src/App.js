@@ -4,10 +4,10 @@ import TelaMatch from "./Componentes/TelaMatch/TelaMatch";
 
 
 const App = () => {
-  const [telaAtual, trocaTelaAtual] = useState("telaIncial");
+  const [telaAtual, trocaTelaAtual] = useState("TelaInicial");
 
-  
   const mudarTela = () => {
+    
     switch (telaAtual){
       case "TelaInicial":
         return <TelaInicial trocarTela={trocarTela} />;
@@ -26,28 +26,3 @@ return <div>{mudarTela()}</div>;
 };
 
 export default App;
-
-
-
-// export default class App extends React.Component{
-//   state ={
-//     telaAtual: "TelaInicial"
-//   };
-
-//   };
-
-//   mudaTela = (nomeTela) => {
-//     this.setState({ telaAtual: nomeTela});
-//   };
-
-//   render() {
-//     return (
-//     <div>
-// <button onClick={() => this.mudaTela("TelaInicial")}>TelaInicial</button>
-// <button onClick={() => this.mudaTela("TelaMatch")}>TelaMatch</button>
-// {this.mudarTela()}
-// </div>
-
-//     );
-//   }
-// }

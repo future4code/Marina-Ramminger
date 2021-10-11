@@ -1,0 +1,1 @@
+<h1> CreateTripPage.js → Formulário para o administrador criar uma nova viagem </h1>

@@ -16,9 +16,23 @@ export const Login = () => {
     };
 
     const onSubmitLogin = () => {
-        console.log(email, password)
-    };
-
+        console.log(email, password);
+        const body = {
+            email: email,
+            password: password
+        }
+        axios.post(
+            "https://us-central1-labenu-apis.cloudfunctions.net/labeX/marina-ramminger-maryam /login",
+            body
+            )
+        .then((response) => {
+            console.log(response.data.token);
+            localStorage.setItem('token', response.data.token)
+        })
+        .catch((error) => {
+            console.log(error.response)
+        })
+        };
     
     const history = useHistory()
 

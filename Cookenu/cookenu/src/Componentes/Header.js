@@ -2,18 +2,26 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import logo from "../Assents/logo.jpg"
 import styled from "styled-components"
 import { useHistory, useParams } from "react-router";
 import { goToLogin, goToReceitas } from './Coordenadas';
 
 const Logo = styled.img`
-  height: 3.5rem;
+  height: 4.0rem;
   margin: 0.5rem;
 `
+const Botão = styled(Button)`
+background-color: #ff6318;
+color:black;
+/* color: #3f51b5; */
+border-radius: 20px;
+font: impact;
+font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+font-size: larger; 
+width: 150px;
+text-shadow:none;
+`;
 const StyledToolbar = styled(Toolbar) `
 display: flex;
 flex-direction: row;
@@ -26,12 +34,11 @@ const Header = () => {
   return (
       <AppBar position="static">
         <StyledToolbar>
-          <Typography>
-          </Typography>
-          <Button onClick={() => goToReceitas(history)} type="submit"> 
-          <Logo src={logo} />
-          </Button>
-          <Button onClick={() => goToLogin(history)} color="inherit">LOGIN</Button>
+          <Botão
+           Button onClick={() => goToReceitas(history)}><strong> COOKENU </strong>
+          </Botão>
+          <Botão
+          Button onClick={() => goToLogin(history)} color="primary"><strong>LOGIN</strong></Botão>
         </StyledToolbar>
       </AppBar>
   );

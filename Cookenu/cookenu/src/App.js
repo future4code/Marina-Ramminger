@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import Header from "./Componentes/Header";
-import {ThemeProvider} from '@material-ui/system';
+import { ThemeProvider } from "@material-ui/core/styles";
 import AdicionarReceita from "./Páginas/AdicionarReceita";
 import Cadastro from "./Páginas/Cadastro";
 import DetalhesReceita from "./Páginas/DetalhesReceita";
@@ -11,8 +11,11 @@ import Receitas from "./Páginas/Receitas";
 const App = () => {
   return (
 
+    <ThemeProvider>
+
     < BrowserRouter >
-    <Header />
+    <Header
+    color={"primary"} />
 
       <Switch>
         <Route exact path={"/login"}>
@@ -37,6 +40,7 @@ const App = () => {
       </Switch>
       
     </BrowserRouter >
+    </ThemeProvider>
   )
 }
 

@@ -4,7 +4,9 @@ import useForm from "../hooks/formulário";
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import {useHistory} from 'react-router-dom'
-import { goToCadastro } from "../Componentes/Coordenadas";
+import { goToCadastro, goToReceitas } from "../Componentes/Coordenadas";
+import { login } from "../services/user";
+import useUnprotectedPage from "../hooks/useUnprotectedPage";
 
 export const LoginContainer = styled.div `
 display:flex;
@@ -37,10 +39,11 @@ width:80vw;
 max-width:450px;
 margin-bottom: 20px;
 border-radius: 20px;
+text-shadow:none;
 `
 export const BotãoLogin = styled(Button)`
 background-color: #ff6318;
-color:black;
+color:#3f51b5;
 /* color: #3f51b5; */
 border-radius: 20px;
 font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -49,17 +52,19 @@ width: 150px;
 text-shadow:none;
 width:80vw;
 max-width:450px;
+margin-top: 30px;
 `;
 
-const Login = () => {
+const LoginForm = () => {
+  useUnprotectedPage()
   const history = useHistory()
 
   const [form, onChange, clear] = useForm({email:"", password:""})
 
   const onSubmitForm = (event) => {
     event.preventDefault()
+   login(form, clear, history)
   }
-
 
   return (
     <LoginContainer>
@@ -90,7 +95,10 @@ const Login = () => {
           required
           type={"password"}/>
   <BotãoLogin>
-          <Button> 
+  
+          <Button
+          color={"#3f51b5"}
+          type={"submit"}> 
             <strong>Fazer Login</strong></Button>
          </BotãoLogin>
 
@@ -98,17 +106,18 @@ const Login = () => {
          </InputContainer>
 
          <LoginFormContainer>
-    
+    <p>
            <Button onClick ={() => goToCadastro(history)}
-           type={"submit"}
            fullWidth
-           variant={"text"}
-           color={"black"}> <strong>Não possui conta? Cadastre-se</strong></Button>
-
+           variant={'contained'}
+           color={"inherit"}
+          //  color={"black"}
+           > <strong>Não possui conta? Cadastre-se</strong></Button>
+</p>
 </LoginFormContainer>
           
     </LoginContainer>
   )
 }
 
-export default Login 
+export default LoginForm

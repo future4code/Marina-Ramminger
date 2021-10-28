@@ -55,15 +55,14 @@ max-width:450px;
 margin-top: 30px;
 `;
 
-const LoginForm = () => {
-  useUnprotectedPage()
+const LoginForm = ({buttonLogin, setButtonLogin}) => {
+  
   const history = useHistory()
-
   const [form, onChange, clear] = useForm({email:"", password:""})
 
   const onSubmitForm = (event) => {
     event.preventDefault()
-   login(form, clear, history)
+   login(form, clear, history, setButtonLogin)
   }
 
   return (
@@ -98,7 +97,9 @@ const LoginForm = () => {
   
           <Button
           color={"#3f51b5"}
-          type={"submit"}> 
+          type={"submit"}
+        > 
+        
             <strong>Fazer Login</strong></Button>
          </BotãoLogin>
 

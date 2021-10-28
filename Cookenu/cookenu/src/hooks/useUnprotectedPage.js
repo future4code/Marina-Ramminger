@@ -6,7 +6,7 @@ const useUnprotectedPage = () => {
     const history = useHistory()
     useEffect (()=> {
         const token = localStorage.getItem('token')
-    if (!token){
+    if (token){
         goToReceitas(history)
     }
 }, [history])

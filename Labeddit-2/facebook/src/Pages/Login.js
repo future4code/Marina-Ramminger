@@ -1,12 +1,11 @@
 import React from "react";
 import styled from "styled-components"
 import useForm from "../hooks/formulário";
+import { loginUp } from "../hooks/users";
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import {useHistory} from 'react-router-dom'
-import { goToCadastro, goToReceitas } from "../Componentes/Coordenadas";
-import { signUp } from "../services/user";
-import useUnprotectedPage from "../hooks/useUnprotectedPage";
+import { goToCadastro } from "../components/Coordenadas";
 
 export const LoginContainer = styled.div `
 display:flex;
@@ -55,39 +54,24 @@ max-width:450px;
 margin-top: 30px;
 `;
 
-const Cadastro = ({buttonLogin, setButtonLogin}) => {
+const Login = () => {
 
+const history = useHistory()
 
-  const history = useHistory()
-
-  const [form, onChange, clear] = useForm({name:"", email:"", password:""})
+  const [form, onChange, clear] = useForm({email:"", password:""})
 
   const onSubmitForm = (event) => {
     event.preventDefault()
-   signUp(form, clear, history, setButtonLogin)
-  }
-
-  const goBack = () => {
-    history.goBack();
+   loginUp(form, clear, history)
   }
 
   return (
     <LoginContainer>
       <Texto>
-      <h1> ÁREA DE CADASTRO </h1>
+      <h1> ÁREA DO USUÁRIO </h1>
       </Texto>
          <InputContainer>
          <form onSubmit ={onSubmitForm}>
-         <TextField 
-           name={"name"}
-          value={form.name}
-          onChange={onChange}
-          label={"Nome"}
-          variant={"outlined"}
-          border-radius={"20px"}
-          fullWidth margin={"normal"}
-          type={"name"}
-          />
            <TextField 
            name={"email"}
           value={form.email}
@@ -114,20 +98,25 @@ const Cadastro = ({buttonLogin, setButtonLogin}) => {
           <Button
           color={"#3f51b5"}
           type={"submit"}> 
-            <strong>Fazer Cadastro</strong></Button>
+            <strong>Fazer Login</strong></Button>
          </BotãoLogin>
 
          </form>
-
-         <p>
-         <Button  fullWidth
-           variant={'contained'}
-           color={"inherit"}onClick={() => goBack()}><strong>Voltar</strong></Button>
-           </p>
          </InputContainer>
+
+         <LoginFormContainer>
+    <p>
+           <Button onClick ={() => goToCadastro(history)}
+           fullWidth
+           variant={'contained'}
+           color={"inherit"}
+          //  color={"black"}
+           > <strong>Não possui conta? Cadastre-se</strong></Button>
+</p>
+</LoginFormContainer>
+          
     </LoginContainer>
   )
 }
 
-
-export default Cadastro 
+export default Login

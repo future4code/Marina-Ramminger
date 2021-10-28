@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import styled from "styled-components"
-import { useHistory, useParams } from "react-router";
+import { useHistory } from "react-router";
 import { goToLogin, goToReceitas } from './Coordenadas';
 
 const Logo = styled.img`
@@ -28,9 +28,24 @@ flex-direction: row;
 justify-content: space-between;
 `
 
-const Header = () => {
+const Header = ({buttonLogin, setButtonLogin}) => {
   const history = useHistory()
+  const token = localStorage.getItem("token")
+ 
+  const logout = () => {
+    localStorage.removeItem("token")
+  }
 
+  const buttonAction = () => {
+    if (token) {
+      logout()
+      setButtonLogin("Login")
+      goToLogin(history)}
+      else {
+        goToLogin(history)
+      }
+    }
+  
   return (
       <AppBar position="static">
         <StyledToolbar>
@@ -38,7 +53,7 @@ const Header = () => {
            Button onClick={() => goToReceitas(history)}><strong> COOKENU </strong>
           </Botão>
           <Botão
-          Button onClick={() => goToLogin(history)} color="primary"><strong>LOGIN</strong></Botão>
+          Button onClick={buttonAction} color="primary"><strong>{buttonLogin}</strong></Botão>
         </StyledToolbar>
       </AppBar>
   );

@@ -5,7 +5,7 @@ import useRequestData from "../hooks/useRequestData";
 import Fab from "@material-ui/core/Fab";
 import styled from 'styled-components'
 import {useHistory} from 'react-router-dom'
-import { goToAdicionarReceita } from "../Componentes/Coordenadas";
+import { goToAdicionarReceita, goToDetalhesReceita } from "../Componentes/Coordenadas";
 
 export const ReceitasContainer = styled.div `
 display: flex;
@@ -25,8 +25,8 @@ const Receitas = () => {
   const history = useHistory()
  const recipes = useRequestData([], 'https://cookenu-api.herokuapp.com/recipe/feed')
 
- const onClickCard = () => {
-
+ const onClickCard = (id) => {
+  goToDetalhesReceita(history, id)
  }
 
 const recipeCards = recipes.map((recipe) => {
@@ -35,7 +35,7 @@ const recipeCards = recipes.map((recipe) => {
     key={recipe.recipe_id}
     title={recipe.title}
     image={recipe.image}
-    onClick={onClickCard}
+    onClick={() => onClickCard(recipe.recipe_id)}
     />
   )
 })

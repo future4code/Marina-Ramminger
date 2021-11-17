@@ -41,19 +41,6 @@ margin-bottom: 20px;
 border-radius: 20px;
 text-shadow:none;
 `
-export const BotãoLogin = styled(Button)`
-background-color: #ff6318;
-color:#3f51b5;
-/* color: #3f51b5; */
-border-radius: 20px;
-font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-font-size: larger; 
-width: 150px;
-text-shadow:none;
-width:80vw;
-max-width:450px;
-margin-top: 30px;
-`;
 
 const LoginForm = ({buttonLogin, setButtonLogin}) => {
   
@@ -93,15 +80,14 @@ const LoginForm = ({buttonLogin, setButtonLogin}) => {
           fullWidth margin={"normal"}
           required
           type={"password"}/>
-  <BotãoLogin>
+
   
           <Button
-          color={"#3f51b5"}
           type={"submit"}
         > 
         
             <strong>Fazer Login</strong></Button>
-         </BotãoLogin>
+    
 
          </form>
          </InputContainer>

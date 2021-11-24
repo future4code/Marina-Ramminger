@@ -52,4 +52,32 @@ D) SELECT * FROM Atores ORDER BY salário DESC LIMIT 3;
 E) SELECT AVG(salário) FROM Atores GROUP BY gênero;
     SELECT AVG(salário), gênero FROM Atores GROUP BY gênero;
 
-EXERCÍCIO 6:
+EXERCÍCIO 6: 
+A) ALTER TABLE Filmes ADD data_limite_cinema DATE;
+
+B) ALTER TABLE Filmes CHANGE avaliação avaliação FLOAT;
+
+C) UPDATE Filmes SET data_limite_cinema = "2022/01/15" WHERE id = "001";
+UPDATE Filmes SET data_limite_cinema = "2021/07/03" WHERE id = "002";
+
+D) DELETE FROM Filmes WHERE id = "003";
+UPDATE Filmes SET sinopse = "Dona Flor é apaixonada por dois homens diametralmente opostos" WHERE id = "003";
+Mostra que deu certo, porém não aparece nenhum dado novo na tabela, já que a linha inteira foi excluída. Como explicaram, UPDATE basicamente sempre gerará uma mensagem de sucesso, mesmo nada sendo alterado. 
+
+EXERCÍCIO 7:
+SELECT COUNT(*) FROM Filmes WHERE avaliação > "7.5";
+SELECT COUNT(*) FROM Filmes WHERE data_limite_cinema > CURDATE();
+SELECT COUNT(*) FROM Filmes WHERE data_limite_cinema <> CURDATE();
+SELECT AVG(avaliação) FROM Filmes;
+SELECT MAX(avaliação), título FROM Filmes; //Não deu certo. Como eu faço para ver o título desse meu filme que recebe nota máxima? 
+Tentei assim: SELECT MAX(avaliação), título FROM Filmes GROUP BY título; // Não deu certo.
+SELECT MIN(avaliação) FROM Filmes;
+
+EXERCÍCIO 8:
+A) SELECT * FROM Filmes ORDER BY título ASC; // SELECT * FROM Movie ORDER BY title;
+
+B) SELECT * FROM Filmes ORDER BY título DESC LIMIT 2; // SELECT * FROM Movie ORDER BY title LIMIT 5;
+
+C) SELECT * FROM Filmes ORDER BY data_limite_cinema DESC LIMIT 3; // SELECT * FROM Movie WHERE release_date < CURDATE()ORDER BY release_date DESC LIMIT 3;
+
+D) SELECT * FROM Filmes ORDER BY avaliação DESC LIMIT 3; // 

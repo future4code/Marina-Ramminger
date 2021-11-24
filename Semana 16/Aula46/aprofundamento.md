@@ -65,10 +65,10 @@ UPDATE Filmes SET sinopse = "Dona Flor é apaixonada por dois homens diametralme
 Mostra que deu certo, porém não aparece nenhum dado novo na tabela, já que a linha inteira foi excluída. Como explicaram, UPDATE basicamente sempre gerará uma mensagem de sucesso, mesmo nada sendo alterado. 
 
 EXERCÍCIO 7:
-SELECT COUNT(*) FROM Filmes WHERE avaliação > "7.5";
+SELECT COUNT(*) FROM Filmes WHERE avaliação > "7.5"; //CONTAGEM
 SELECT COUNT(*) FROM Filmes WHERE data_limite_cinema > CURDATE();
 SELECT COUNT(*) FROM Filmes WHERE data_limite_cinema <> CURDATE();
-SELECT AVG(avaliação) FROM Filmes;
+SELECT AVG(avaliação) FROM Filmes; // MÉDIA 
 SELECT MAX(avaliação), título FROM Filmes; //Não deu certo. Como eu faço para ver o título desse meu filme que recebe nota máxima? 
 Tentei assim: SELECT MAX(avaliação), título FROM Filmes GROUP BY título; // Não deu certo.
 SELECT MIN(avaliação) FROM Filmes;

@@ -98,47 +98,48 @@ import connection from "./connection"
 //         }
 //       });
       
-      //B)
+      //B) QUERY PARAMETERS
 
-    //   const quantidadeAtorGênero = async (gênero: string): Promise<any> => {
-    //     const resultado = await connection.raw(`
-    //     SELECT COUNT(*) FROM Atores WHERE gênero = "${gênero}"
-    //      `)
-    //     return resultado[0]; 
-    //     };
-    //     app.get("/atores", async (req: Request, res: Response) => {
-    //         try {
-    //           const count = await quantidadeAtorGênero (req.query.gênero as string);
-    //           res.status(200).send({
-    //               quantity: count,
-    //           })
-    //         } catch (err:any) {
-    //           res.status(400).send({
-    //             message: err.message,
-    //           });
-    //         }
-    //       });
+      const quantidadeAtorGenero = async (gênero: string): Promise<any> => {
+        const resultado = await connection.raw(`
+        SELECT COUNT(*) FROM Atores WHERE gênero = "${gênero}"
+         `)
+        return resultado[0][0]; 
+        };
+        app.get("/ator", async (req: Request, res: Response) => {
+            try {
+              const count = await quantidadeAtorGenero (req.query.gênero as string);
+              res.status(200).send({
+                  quantity: count,
+              })
+            } catch (err:any) {
+              res.status(400).send({
+                message: err.message,
+              });
+            }
+          });
           // Para ver algum resultado preciso alterar o valor de "gênero" na função.
 
           //EXERCÍCIO 04:
 
+// PATH PARAMETERS
 
-    // app.put("/ator/id", async (req: Request, res: Response) => {
-    //     try {
-    //       await connection("Atores")
-    //       .update({
-    //           salário: req.body.salário,
-    //       })
-    //       .where({id: req.params.id})
-    //       res.status(200).send({
-    //         message: "Salário Atualizado",
-    //       });
-    //     } catch (err:any) {
-    //       res.status(400).send({
-    //         message: err.message,
-    //       });
-    //     }
-    //   });
+    app.put("/ator/:id", async (req: Request, res: Response) => {
+        try {
+          await connection("Atores")
+          .update({
+              salário: req.body.salário,
+          })
+          .where({id: req.params.id})
+          res.status(200).send({
+            message: "Salário Atualizado",
+          });
+        } catch (err:any) {
+          res.status(400).send({
+            message: err.message,
+          });
+        }
+      });
 
     //SEGUNDA TENTATIVA - SEM SUCESSO TAMBÉM: 
 
@@ -150,24 +151,24 @@ import connection from "./connection"
     //           .where("id", id);
     //       }; 
 
-    //     app.put("/ator", async (req: Request, res: Response) => {
-    //         try {
-    //           await atualizarSalário(req.body.id, req.body.salary);
-    //           res.status(200).send({
-    //             message: "Success",
-    //           });
-    //         } catch (err:any) {
-    //           res.status(400).send({
-    //             message: err.message,
-    //           });
-    //         }
-    //       });
+        // app.put("/ator", async (req: Request, res: Response) => {
+        //     try {
+        //       await atualizarSalário(req.body.id, req.body.salary);
+        //       res.status(200).send({
+        //         message: "Success",
+        //       });
+        //     } catch (err:any) {
+        //       res.status(400).send({
+        //         message: err.message,
+        //       });
+        //     }
+        //   });
 
-    //B)
+    //B) PATH PARAMETERS
 
     app.delete("/ator/:id", async (req, res) => {
         try {
-            await connection("Aotres")
+            await connection("Atores")
             .delete()
             .where({id: req.params.id})
             res.status(200).send("O Ator foi excluído com sucesso");
@@ -176,4 +177,30 @@ import connection from "./connection"
         }
     })
 
-    //TAMBÉM NÃO CONSEGUI DELETAR USUÁRIO! ENTENDER! 
+    //DEU CERTO!!!!
+
+    //INSERIR NOVO ATOR - RAW:
+    app.post("/criar", (req,res) => {
+        try {
+            connection.raw(`
+            INSERT INTO Atores (id, nome, salário, aniversário, gênero)
+            VALUES (
+                "${req.body.id}",
+                "${req.body.nome}",
+                ${req.body.salário},
+                "${req.body.aniversário}",
+                "${req.body.gênero}"
+            );
+            `);
+            res.status(201).send("O ator foi criado com sucesso!")
+        } catch (error: any) {
+            res.status(500).send("Ocorreu um erro inesperado!");
+        }
+        }
+    );
+
+    // "id": "005",
+    //     "nome": "Fernanda Montenegro",
+    //     "salário": 600000,
+    //     "aniversário": "1938-02-10T03:00:00.000Z",
+    //     "gênero": "female"

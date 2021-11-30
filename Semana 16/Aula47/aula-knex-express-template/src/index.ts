@@ -204,3 +204,5 @@ import connection from "./connection"
     //     "salário": 600000,
     //     "aniversário": "1938-02-10T03:00:00.000Z",
     //     "gênero": "female"
+    
+    //dando algum erro criação
